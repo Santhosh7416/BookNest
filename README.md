@@ -50,5 +50,3 @@ Admins can manage books, users, and approve/reject requests efficiently.
 - Jinja2 (Template Engine)
 
 ---
-
-## 📂 Project Structure
