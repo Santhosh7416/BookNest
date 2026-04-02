@@ -32,6 +32,18 @@ Admins can manage books, users, and approve/reject requests efficiently.
 
 ---
 
+## 🔐 Security Features
+
+- Session-based authentication for users and admin
+- Protected routes (dashboard accessible only after login)
+- Admin-only access control for sensitive operations
+- Username confirmation before deleting a user (prevents accidental deletion)
+- Duplicate request prevention for book issue/return
+- Input handling using Flask request methods
+- Basic data validation during login and registration
+
+---
+
 ## 🔄 Request Management System
 - Users send **issue/return requests**
 - Admin reviews requests
