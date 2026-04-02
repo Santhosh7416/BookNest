@@ -62,3 +62,14 @@ Admins can manage books, users, and approve/reject requests efficiently.
 - Jinja2 (Template Engine)
 
 ---
+
+## 📸 Screenshots
+
+### 🔐 Login Page
+![Login Page](Screenshots/Login_Page.png)
+
+### 👤 User Dashboard
+![User Dashboard](Screenshots/User_Interface.png)
+
+### 🛠️ Admin Dashboard
+![Admin Dashboard](Screenshots/Admin_Interface.png)
