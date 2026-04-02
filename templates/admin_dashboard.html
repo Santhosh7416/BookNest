@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='admin_dashboard.css') }}">
+</head>
+<body>
+
+      <div class="topbar">
+    <h1>📚 BookNest</h1>
+</div>
+  
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+    <h1>👑 Admin Dashboard</h1>
+</div>
+
+<!-- ===== SIDEBAR TOGGLE ===== -->
+<input type="checkbox" id="toggleSidebar" {% if open_sidebar %}checked{% endif %}>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="main-content">
+
+    <!-- ACTIONS -->
+    <div class="actions">
+        <a href="/add_book" class="btn">➕ Add Book</a>
+        <label for="toggleSidebar" class="btn">👤 Users</label>
+        <a href="/logout" class="btn logout">🚪 Logout</a>
+    </div>
+
+    <!-- ===== REQUESTS ===== -->
+    <h2>📩 Requests</h2>
+
+    <div class="requests-container">
+
+    {% if requests|length == 0 %}
+    <p class="no-data">❌ No requests found</p>
+    {% endif %}
+
+    {% for req in requests %}
+    <div class="request-card">
+
+        <h3>{{ req.user }}</h3>
+        <p><b>Book:</b> {{ req.title }}</p>
+        <p><b>Type:</b> {{ req.type }}</p>
+
+        <a href="/approve_request/{{ req._id }}">Approve</a>
+        <a href="/reject_request/{{ req._id }}">Reject</a>
+
+    </div>
+    {% endfor %}
+    </div>
+
+    <!-- ===== BOOKS ===== -->
+    <h2>📚 Books</h2>
+
+    <!-- BOOK SEARCH -->
+    <div class="search-box">
+        <form method="GET" action="/admin_dashboard">
+            <input type="text" name="search_book" placeholder="Search books..." value="{{ search_book or '' }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="books-container">
+
+    {% if books|length == 0 %}
+    <p class="no-data">❌ No books found</p>
+    {% endif %}
+
+    {% for book in books %}
+    <div class="book-card">
+
+        <h3>{{ book.title }}</h3>
+        <p>{{ book.author }}</p>
+        <p class="stock">Stock: {{ book.stock }}</p>
+
+        <div class="controls">
+            <a href="/update_stock/{{ book._id }}/increase">➕</a>
+            <a href="/update_stock/{{ book._id }}/decrease">➖</a>
+            <a href="/delete_book/{{ book._id }}" class="delete">Delete</a>
+        </div>
+
+    </div>
+    {% endfor %}
+
+    </div>
+
+</div>
+
+<!-- ===== SIDEBAR ===== -->
+<div class="sidebar">
+
+    <!-- FIXED HEADER -->
+    <div class="sidebar-header">
+        <h2>👤 Users</h2>
+
+        <!-- SEARCH -->
+        <div class="search-box">
+            <form method="GET" action="/admin_dashboard">
+                <input type="text" name="search_user" placeholder="Search user..." value="{{ search_query or '' }}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCROLLABLE USERS -->
+    <div class="user-list">
+
+        {% if users|length == 0 %}
+        <p class="no-data">❌ No users found</p>
+        {% endif %}
+
+        {% for user in users %}
+        <details class="user-item">
+
+            <summary>{{ user.username }}</summary>
+
+            <div class="user-info">
+                <p><b>Name:</b> {{ user.name }}</p>
+                <p> <b>Username:</b> {{ user.username}}</b></p>
+                <p><b>Email:</b> {{ user.email }}</p>
+
+                <h4>📚 Books</h4>
+                {% for book in books %}
+                    {% if book.issued_to == user.username %}
+                        <p>📖 {{ book.title }}</p>
+                    {% endif %}
+                {% endfor %}
+
+                <a href="/delete_user/{{ user._id }}" class="delete">Delete User</a>
+            </div>
+
+        </details>
+        {% endfor %}
+
+    </div>
+
+</div>
+</body>
+</html>

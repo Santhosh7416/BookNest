@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Book</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='add_book.css') }}">
+</head>
+<body>
+
+    <div class="topbar">
+    <h1>📚 BookNest</h1>
+</div>
+
+<div class="header">
+    <h1>Add Book</h1>
+</div>
+
+<div class="form-container">
+
+<form action="/add_book_data" method="POST">
+
+<input type="text" id="title" name="title" placeholder="Book Title">
+<input type="text" id="author" name="author" placeholder="Author">
+<input type="number" id="stock" name="stock" placeholder="Stock Quantity">
+
+<button type="submit" id="submitBtn" disabled>Add Book</button>
+<a href="/admin_dashboard" class="back-btn">⬅ Back</a>
+
+</form>
+
+
+</div>
+
+<!-- SCRIPT -->
+<script>
+const title = document.getElementById("title");
+const author = document.getElementById("author");
+const stock = document.getElementById("stock");
+const btn = document.getElementById("submitBtn");
+
+function checkInput() {
+    if (title.value && author.value && stock.value) {
+        btn.disabled = false;
+    } else {
+        btn.disabled = true;
+    }
+}
+
+title.addEventListener("input", checkInput);
+author.addEventListener("input", checkInput);
+stock.addEventListener("input", checkInput);
+</script>
+
+</body>
+</html>

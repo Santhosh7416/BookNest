@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+
+        <div class="topbar">
+    <h1>📚 BookNest</h1>
+</div>
+
+
+<!-- ===== HEADER (FIXED) ===== -->
+<div class="header">
+    <h1>Dashboard</h1>
+    <h3>Welcome {{ user }}</h3>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="main-content">
+
+    <!-- ACTIONS -->
+    <div class="actions">
+        <a href="/view_books" class="btn">📖 View Books</a>
+        <a href="/logout" class="btn logout">🚪 Logout</a>
+    </div>
+
+    <!-- ===== MY BOOKS ===== -->
+    <h2>📚 My Books</h2>
+
+    <div class="books-container">
+    {% for book in my_books %}
+    <div class="card">
+        <h3>{{ book.title }}</h3>
+        <p>{{ book.author }}</p>
+
+        {% if return_requested.get(book._id|string) %}
+            <button class="requested-btn" disabled>Return Requested</button>
+        {% else %}
+            <a href="/return_request/{{ book._id }}" class="return-btn">Return</a>
+        {% endif %}
+
+    </div>
+    {% else %}
+    <p>No books issued</p>
+    {% endfor %}
+    </div>
+
+    <!-- ===== MY REQUESTS ===== -->
+    <h2>📩 My Requests</h2>
+
+    <div class="books-container">
+    {% for req in my_requests %}
+    <div class="card">
+
+        <h3>{{ req.title }}</h3>
+        <p><b>Type:</b> {{ req.type }}</p>
+        <p><b>Status:</b> {{ req.status }}</p>
+
+    </div>
+    {% else %}
+    <p>No requests found</p>
+    {% endfor %}
+    </div>
+
+</div>
+
+</body>
+</html>

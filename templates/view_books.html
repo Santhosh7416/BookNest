@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Books</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='view_books.css') }}">
+</head>
+<body>
+
+        <div class="topbar">
+    <h1>📚 BookNest</h1>
+</div>
+
+
+<!-- HEADER -->
+<div class="header">
+    <h1>📚 Available Books</h1>
+    <h3>Total Books: {{ total_books }}</h3>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+    <!-- SEARCH -->
+    <div class="search-box">
+        <form method="GET" action="/view_books">
+            <input type="text" name="search" placeholder="Search books..." value="{{ search_query }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- BOOKS -->
+    <div class="books-container">
+
+        {% if books|length == 0 %}
+            <p class="no-data">❌ No books found</p>
+        {% endif %}
+
+        {% for book in books %}
+        <div class="book-card">
+
+            <h3>{{ book.title }}</h3>
+            <p>{{ book.author }}</p>
+            <p class="stock">Stock: {{ book.stock }}</p>
+
+            {% set status = book_status.get(book._id|string) %}
+
+            {% if status == "pending" %}
+                <button class="requested-btn" disabled>Requested</button>
+                <a href="/cancel_request/{{ request_ids[book._id|string] }}" class="cancel-btn">Cancel</a>
+
+            {% elif status == "issued" %}
+                <a href="/return_request/{{ book._id }}" class="return-btn">Return</a>
+
+            {% elif status == "return_pending" %}
+                <button class="requested-btn" disabled>Return Requested</button>
+
+            {% else %}
+                <a href="/request_book/{{ book._id }}" class="request-btn">Request</a>
+            {% endif %}
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <!-- BACK -->
+    <div class="back">
+        <a href="/dashboard" class="back-btn">⬅ Back</a>
+    </div>
+
+</div>
+
+</body>
+</html>

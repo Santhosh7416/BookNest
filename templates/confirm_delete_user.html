@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Confirm Delete</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+        <div class="topbar">
+    <h1>📚 BookNest</h1>
+</div>
+
+
+<div class="container">
+
+<h2>⚠ Confirm Delete User</h2>
+
+<p>Type username to confirm:</p>
+<p><b>{{ user.username }}</b></p>
+
+{% if error %}
+<p style="color:red;">{{ error }}</p>
+{% endif %}
+
+<form method="POST" action="/confirm_delete_user/{{ user._id }}">
+    <input type="text" name="username" placeholder="Enter username" required>
+    <button type="submit">Delete</button>
+</form>
+
+<br>
+<a href="/admin_dashboard"><button>Cancel</button></a>
+
+</div>
+
+</body>
+</html>

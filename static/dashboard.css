@@ -1,0 +1,110 @@
+/* ===== BODY ===== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #eef1ff;
+    overflow: hidden; /* stop full page scroll */
+}
+
+/* ===== HEADER (FIXED) ===== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    position: absolute;
+    top: 120px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+}
+
+/* ===== ACTIONS ===== */
+.actions {
+    text-align: center;
+    padding: 15px;
+}
+
+.btn {
+    padding: 10px 15px;
+    background: #667eea;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.logout {
+    background: #e74c3c;
+}
+
+/* ===== TITLES ===== */
+h2 {
+    padding-left: 20px;
+    color: #333;
+}
+
+/* ===== GRID ===== */
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* ===== CARD ===== */
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* ===== BUTTONS ===== */
+.return-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #e67e22;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.requested-btn {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: gray;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+/* ===== TOP BRAND BAR ===== */
+.topbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background: #2c3e50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    font-size: 18px;
+    font-weight: bold;
+}
