@@ -68,10 +68,10 @@ Admins can manage books, users, and approve/reject requests efficiently.
 ### 🔐 Login Page
 ![Login Page](Screenshots/Login_Page.png)
 
-
+---
 ### 👤 User Interface
 ![User Dashboard](Screenshots/User_Interface.png)
 
-
+---
 ### 🛠️ Admin Interface
 ![Admin Dashboard](Screenshots/Admin_Interface.png)
